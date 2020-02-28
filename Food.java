@@ -128,5 +128,6 @@ public class Food
      * This method is used to print data of food.
      */      
     public void printData(){
+        System.out.println(name);
     }
 }

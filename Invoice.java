@@ -132,5 +132,6 @@ public class Invoice
      * This method is used to print data of invoice.
      */      
     public void printData(){
+        System.out.println(totalPrice);
     }
 }

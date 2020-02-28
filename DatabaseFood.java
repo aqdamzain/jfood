@@ -13,7 +13,7 @@ public class DatabaseFood
     {
     }
     
-    public boolean addFood(Food food){
+    public static boolean addFood(Food food){
         
         return false;
     }
