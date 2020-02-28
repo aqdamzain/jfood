@@ -1,4 +1,9 @@
-
+ /**
+ * This is the class of Customers Object.
+ * @author Aqdam Zain
+ * @version 0.2
+ * @since 28-02-2020
+ */
 public class DatabaseFood
 {
 

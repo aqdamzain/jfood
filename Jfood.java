@@ -1,15 +1,12 @@
 
 /**
- * Write a description of class Jfood here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * This is the main class of Application.
+ * @author Aqdam Zain
+ * @version 0.2
+ * @since 28-02-2020
  */
 public class Jfood
 {
-    // instance variables - replace the example below with your own
-    private int x;
-
     /**
      * Constructor for objects of class Jfood
      */
@@ -18,6 +15,11 @@ public class Jfood
         // initialise instance variables
     }
 
+    /**
+    * This is the main method which makes use of addNum method.
+    * @param args Unused.
+    */
+  
     public static void main(String[] args)
     {
         Location locationObj = new Location( "Bukittinggi", "Sumatera Barat", "Bukittinggi is the third largest city in West Sumatra, Indonesia, with a population of over 124,000 people and an area of 25.24 km².");
