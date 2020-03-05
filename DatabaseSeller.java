@@ -1,24 +1,20 @@
 public class DatabaseSeller
 {
-    private String[] listSeller;
-
-    public DatabaseSeller()
-    {
-    }
+    private static String[] listSeller;
     
     public static boolean addSeller(Seller seller){
-        return false;
+        return true;
     }
     
-    public boolean removeSeller(Seller seller){
-        return false;
+    public static boolean removeSeller(Seller seller){
+        return true;
     }
     
-    public Seller getSeller(){
+    public static Seller getSeller(){
         return null;
     }
     
-    public String[] getListSeller(){
+    public static String[] getListSeller(){
         return listSeller;
     }
 }

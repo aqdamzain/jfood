@@ -25,7 +25,7 @@ public class Food
      /**
      * Stores category of the food
      */  
-    private String category;
+    private FoodCategory category;
 
      /**
      * Constructor for objects of class Food.
@@ -35,7 +35,7 @@ public class Food
      * @param price is the price of the food
      * @param category is the category of the food
      */    
-    public Food( int id, String name, Seller seller, int price, String category)
+    public Food( int id, String name, Seller seller, int price, FoodCategory category)
     {
         this.id = id;
         this.name = name;
@@ -96,7 +96,7 @@ public class Food
      * This method is used to retrieves category of food.
      * @return String which returns category of food.
      */     
-    public String getCategory() {
+    public FoodCategory getCategory() {
         return category;
     }
 
@@ -104,7 +104,7 @@ public class Food
      * This method is used to manage category of food.
      * @param category is the category of the food
      */     
-    public void setCategory(String category) {
+    public void setCategory(FoodCategory category) {
         this.category = category;
     }
 
@@ -128,6 +128,12 @@ public class Food
      * This method is used to print data of food.
      */      
     public void printData(){
-        System.out.println(name);
+        System.out.println("========FOOD========");
+        System.out.println("ID: " + this.id);
+        System.out.println("Name: " + this.name);
+        System.out.println("Seller: " + this.seller.getName());
+        System.out.println("City: " + this.seller.getLocation().getCity());
+        System.out.println("Price: " + this.price);
+         System.out.println("Category: " + this.category.toString());
     }
 }

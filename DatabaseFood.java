@@ -7,27 +7,23 @@
 public class DatabaseFood
 {
 
-    private String[] listFood;
-    
-    public DatabaseFood()
-    {
-    }
+    private static String[] listFood;
     
     public static boolean addFood(Food food){
         
-        return false;
+        return true;
     }
     
-    public boolean removeFood(Food food){
+    public static boolean removeFood(Food food){
         
-        return false;
+        return true;
     }
     
-    public Food getFood(){
+    public static Food getFood(){
         return null;
     }
     
-    public String[] getListFood(){
+    public static String[] getListFood(){
         return listFood;
     }
 }

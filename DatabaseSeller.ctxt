@@ -1,13 +1,11 @@
 #BlueJ class context
 comment0.target=DatabaseSeller
-comment1.params=
-comment1.target=DatabaseSeller()
+comment1.params=seller
+comment1.target=boolean\ addSeller(Seller)
 comment2.params=seller
-comment2.target=boolean\ addSeller(Seller)
-comment3.params=seller
-comment3.target=boolean\ removeSeller(Seller)
+comment2.target=boolean\ removeSeller(Seller)
+comment3.params=
+comment3.target=Seller\ getSeller()
 comment4.params=
-comment4.target=Seller\ getSeller()
-comment5.params=
-comment5.target=java.lang.String[]\ getListSeller()
-numComments=6
+comment4.target=java.lang.String[]\ getListSeller()
+numComments=5
