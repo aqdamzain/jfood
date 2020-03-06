@@ -31,6 +31,16 @@ public class Invoice
      */    
     private Customer customer;
     
+    /**
+     * Stores payment type of invoice
+     */ 
+    private PaymentType paymentType;
+    
+     /**
+     * Stores status of invoice
+     */
+    private InvoiceStatus status;
+    
      /**
      * Constructor for objects of class Invoice.
      * @param id is id for invoice
@@ -39,13 +49,15 @@ public class Invoice
      * @param customer is the customer in the invoice
      * @param totalPrice is the total of the price in invoice
      */    
-    public Invoice(int id, int idFood, String date, Customer customer, int totalPrice)
+    public Invoice(int id, int idFood, String date, Customer customer, int totalPrice, InvoiceStatus status)
     {
         this.id = id;
         this.idFood = idFood;
         this.date = date;
         this.customer = customer;
         this.totalPrice = totalPrice;
+        this.status = status;
+        
     }
 
      /**
@@ -128,10 +140,33 @@ public class Invoice
         this.customer = customer;
     }
 
+        public PaymentType getPaymentType() {
+        return paymentType;
+    }
+
+    public void setPaymentType(PaymentType paymentType) {
+        this.paymentType = paymentType;
+    }
+
+    public InvoiceStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(InvoiceStatus status) {
+        this.status = status;
+    }
+    
      /**
      * This method is used to print data of invoice.
      */      
     public void printData(){
-        System.out.println(totalPrice);
+        System.out.println("========INVOICE========\n"
+         + "ID: " + this.id + "\n"
+         + "Food ID: " + this.idFood + "\n"
+         + "Date: " + this.date + "\n"
+         + "Customer: " + this.customer.getName() + "\n"
+         + "Total Price: " + this.totalPrice + "\n"
+         + "Status: " + this.status);
     }
+    
 }
