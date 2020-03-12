@@ -27,9 +27,22 @@ public class Jfood
         
         Food foodObj = new Food( 1, "Rendang", sellerObj, 9000, FoodCategory.Coffee);
         Customer customerObj = new Customer( 1, "Ukok", "Ukok@gmail.com", "Ukok123", "27-02-2020");
-        Invoice invoiceObj = new Invoice( 1, foodObj.getId(), "06-03-2020", customerObj,foodObj.getPrice(), InvoiceStatus.Finished);
+        Promo promoObj1 = new Promo( 1, "PROMO1", 1000, 6000, true);
+        Promo promoObj2 = new Promo( 2, "PROMO2", 2000, 10000, true);
+        CashlessInvoice invoiceObj = new CashlessInvoice( 0, foodObj, "06-03-2020", customerObj, InvoiceStatus.Ongoing);
+        invoiceObj.setTotalPrice();
+        CashlessInvoice invoiceObj1 = new CashlessInvoice( 1, foodObj, "06-03-2020", customerObj, InvoiceStatus.Finished);
+        invoiceObj1.setTotalPrice();
+        CashlessInvoice invoiceObj2 = new CashlessInvoice( 2, foodObj, "06-03-2020", customerObj, InvoiceStatus.Finished, promoObj1);
+        invoiceObj2.setTotalPrice();
+        CashlessInvoice invoiceObj3 = new CashlessInvoice( 2, foodObj, "06-03-2020", customerObj, InvoiceStatus.Finished, promoObj2);
+        invoiceObj3.setTotalPrice();
         
         invoiceObj.printData();
+        invoiceObj1.printData();
+        invoiceObj2.printData();
+        invoiceObj3.printData();
+        
         
         
     }

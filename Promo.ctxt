@@ -1,0 +1,27 @@
+#BlueJ class context
+comment0.target=Promo
+comment1.params=id\ code\ discount\ minPrice\ active
+comment1.target=Promo(int,\ java.lang.String,\ int,\ int,\ boolean)
+comment10.params=
+comment10.target=boolean\ getActive()
+comment11.params=active
+comment11.target=void\ setActive(boolean)
+comment12.params=
+comment12.target=void\ printData()
+comment2.params=
+comment2.target=int\ getId()
+comment3.params=id
+comment3.target=void\ setId(int)
+comment4.params=
+comment4.target=java.lang.String\ getCode()
+comment5.params=code
+comment5.target=void\ setCode(java.lang.String)
+comment6.params=
+comment6.target=int\ getDiscount()
+comment7.params=discount
+comment7.target=void\ setDiscount(int)
+comment8.params=
+comment8.target=int\ getMinPrice()
+comment9.params=minPrice
+comment9.target=void\ setMinPrice(int)
+numComments=13

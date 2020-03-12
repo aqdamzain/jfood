@@ -4,7 +4,7 @@
  * @version 0.2
  * @since 28-02-2020
  */
-public class Invoice
+public abstract class Invoice
 {
      /**
      * Stores id of invoice
@@ -12,9 +12,9 @@ public class Invoice
     private int id;
     
      /**
-     * Stores id of the food in invoice
+     * Stores object of the food in invoice
      */      
-    private int idFood;
+    private Food food;
     
      /**
      * Stores date of invoice
@@ -24,22 +24,18 @@ public class Invoice
      /**
      * Stores total pice of invoice
      */       
-    private int totalPrice;
+    protected int totalPrice;
     
      /**
      * Stores total customer of invoice
      */    
     private Customer customer;
     
-    /**
-     * Stores payment type of invoice
-     */ 
-    private PaymentType paymentType;
-    
      /**
      * Stores status of invoice
      */
-    private InvoiceStatus status;
+    private InvoiceStatus invoiceStatus;
+    
     
      /**
      * Constructor for objects of class Invoice.
@@ -49,14 +45,13 @@ public class Invoice
      * @param customer is the customer in the invoice
      * @param totalPrice is the total of the price in invoice
      */    
-    public Invoice(int id, int idFood, String date, Customer customer, int totalPrice, InvoiceStatus status)
+    public Invoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
     {
         this.id = id;
-        this.idFood = idFood;
+        this.food = food;
         this.date = date;
         this.customer = customer;
-        this.totalPrice = totalPrice;
-        this.status = status;
+        this.invoiceStatus = invoiceStatus;
         
     }
 
@@ -80,16 +75,16 @@ public class Invoice
      * This method is used to retrieves id food of invoice.
      * @return int which returns id food of invoice.
      */     
-    public int getIdFood() {
-        return idFood;
+    public Food getFood() {
+        return food;
     }
 
      /**
      * This method is used to manage id food of invoice.
      * @param idFood is id food for invoice
      */       
-    public void setIdFood(int idFood) {
-        this.idFood = idFood;
+    public void setFood(int idFood) {
+        this.food = food;
     }
 
      /**
@@ -120,9 +115,7 @@ public class Invoice
      * This method is used to manage total price of invoice.
      * @param totalPrice is total price for invoice
      */    
-    public void setTotalPrice(int totalPrice) {
-        this.totalPrice = totalPrice;
-    }
+    public abstract void setTotalPrice();
 
      /**
      * This method is used to retrieves total customer of invoice.
@@ -140,33 +133,19 @@ public class Invoice
         this.customer = customer;
     }
 
-        public PaymentType getPaymentType() {
-        return paymentType;
+    public abstract PaymentType getPaymentType();
+
+    public InvoiceStatus getInvoiceStatus() {
+        return invoiceStatus;
     }
 
-    public void setPaymentType(PaymentType paymentType) {
-        this.paymentType = paymentType;
-    }
-
-    public InvoiceStatus getStatus() {
-        return status;
-    }
-
-    public void setStatus(InvoiceStatus status) {
-        this.status = status;
+    public void setInvoiceStatus(InvoiceStatus status) {
+        this.invoiceStatus = invoiceStatus;
     }
     
      /**
      * This method is used to print data of invoice.
      */      
-    public void printData(){
-        System.out.println("========INVOICE========\n"
-         + "ID: " + this.id + "\n"
-         + "Food ID: " + this.idFood + "\n"
-         + "Date: " + this.date + "\n"
-         + "Customer: " + this.customer.getName() + "\n"
-         + "Total Price: " + this.totalPrice + "\n"
-         + "Status: " + this.status);
-    }
+    public abstract void printData();
     
 }
