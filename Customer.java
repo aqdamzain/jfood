@@ -28,7 +28,7 @@ public class Customer
      /**
      * Stores join date of customer
      */    
-    private Calendar joinDate;
+    private Calendar joinDate = Calendar.getInstance();
     
      /**
      * Constructor for objects of class Customer.
@@ -38,36 +38,34 @@ public class Customer
      * @param password is the password of the customer to login app
      * @param joinDate is the date when customer registered on app
      */    
-    public Customer(int id, String name, String email, String password, Calendar joinDate)
+     public Customer(int id, String name, String email, String password, Calendar joinDate)
     {
-        setEmail(email);
-        setPassword(password);
         this.id = id;
         this.name = name;
-        this.password = password;
         this.joinDate = joinDate;
-    }
-    
-    public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth)
-    {
+        
         setEmail(email);
         setPassword(password);
-        this.id = id;
-        this.name = name;
-        this.password = password;
-        this.joinDate.set(Calendar.YEAR, year);
-        this.joinDate.set(Calendar.MONTH, month);
-        this.joinDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
         
     }
     
-        public Customer(int id, String name, String email, String password)
+     public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth)
     {
-        setEmail(email);
-        setPassword(password);
         this.id = id;
         this.name = name;
-        this.password = password;
+        this.joinDate = new GregorianCalendar(year,month-1,dayOfMonth);
+        
+        setEmail(email);
+        setPassword(password);
+    }
+    
+     public Customer(int id, String name, String email, String password)
+    {
+        this.setEmail(email);
+        this.setPassword(password);
+        
+        this.id = id;
+        this.name = name;
     }
     
      /**
@@ -115,11 +113,13 @@ public class Customer
      * @param email is the email of the customer to login app
      */    
     public void setEmail(String email){
-        String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
-        if(Pattern.matches(regex, email)){
+        //String local = "([\\w\\&\\*_~]+\\.{0,1})+";
+        //String domain = "[\\w][\\w\\-]*(\\.[\\w\\-]+)+";
+        String regex = "^([\\w\\&\\*_~]+\\.{0,1})+@[\\w][\\w\\-]*(\\.[\\w\\-]+)+$";
+        if(Pattern.matches(regex,email)){
             this.email = email;
         }else{
-            this.email ="";
+            this.email =" ";
         }
     }
     
@@ -136,11 +136,11 @@ public class Customer
      * @param password is the password of the customer to login app 
      */     
     public void setPassword(String password) {
-        String regex = "((?=.*[a-z])(?=.*d)(?=.*[A-Z]).{6,})";
-        if(Pattern.matches(regex, password)){
+        String regex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$";
+        if(Pattern.matches(regex,password)){
             this.password = password;
         }else{
-            this.password ="";
+            this.password = " ";
         }
     }
 
@@ -161,9 +161,7 @@ public class Customer
     }
     
     public void setJoinDate(int year, int month, int dayOfMonth) {
-        this.joinDate.set(Calendar.YEAR, year);
-        this.joinDate.set(Calendar.MONTH, month);
-        this.joinDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        this.joinDate = new GregorianCalendar(year,month-1,dayOfMonth);
     }
 
      /**
