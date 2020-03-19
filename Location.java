@@ -80,7 +80,9 @@ public class Location
      /**
      * This method is used to print data of location.
      */     
-    public void printData(){
-        System.out.println(province);
+    @Override
+    public String toString(){
+        String string = "Province: "+this.province+"\nCity: "+this.city+"\nDescription: "+ this.description;
+        return string;
     }
 }

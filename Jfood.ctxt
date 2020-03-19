@@ -1,6 +1,5 @@
 #BlueJ class context
 comment0.target=Jfood
-comment0.text=\r\n\ This\ is\ the\ main\ class\ of\ Application.\r\n\ @author\ Aqdam\ Zain\r\n\ @version\ 0.2\r\n\ @since\ 28-02-2020\r\n
 comment1.params=
 comment1.target=Jfood()
 comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ Jfood\r\n

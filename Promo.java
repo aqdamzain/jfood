@@ -55,11 +55,9 @@ public class Promo
         this.active = active;
     }
     
-    public void printData(){
-        System.out.println(this.id);
-        System.out.println(this.code);
-        System.out.println(this.discount);
-        System.out.println(this.minPrice);
-        System.out.println(this.active);
+    @Override
+    public String toString(){
+        String string = "ID: "+this.id+"\nCode: "+this.code+"\nDiscount: "+this.discount+"\nMin Price: "+this.minPrice+"\nActive: "+this.active;
+        return string;
     }
 }

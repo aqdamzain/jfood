@@ -5,6 +5,7 @@
  * @version 0.2
  * @since 28-02-2020
  */
+import java.util.*;
 public class Jfood
 {
     /**
@@ -22,20 +23,14 @@ public class Jfood
   
     public static void main(String[] args)
     {
-        Location locationObj = new Location( "Padang", "Sumatera Barat", "Tempat lahir Penjual");
-        Seller sellerObj = new Seller( 1, "Aqdam", "aqdamzh@gmail.com", "085934543920", locationObj);
+        Calendar calendar = Calendar.getInstance();  
+        Customer customerObj = new Customer( 1, "Ukok", "Uko..k@gmaicom", "ukokkoku", calendar);
+        Customer customerObj2 = new Customer( 1, "Ukok", "Ukok@gmai.com", "Ukokkoku123", 2019, 2, 19);
+        Customer customerObj3 = new Customer( 1, "Ukok", "Uko..k@gmaicom", "Ukokkoku123");
         
-        Food foodObj = new Food( 1, "Rendang", sellerObj, 9000, FoodCategory.Coffee);
-        Customer customerObj = new Customer( 1, "Ukok", "Ukok@gmail.com", "Ukok123", "27-02-2020");
-        CashInvoice invoiceObj1 = new CashInvoice( 1, foodObj, "06-03-2020", customerObj, InvoiceStatus.Finished);
-        invoiceObj1.setTotalPrice();
-        CashInvoice invoiceObj2 = new CashInvoice( 2, foodObj, "06-03-2020", customerObj, InvoiceStatus.Finished, 2000);
-        invoiceObj2.setTotalPrice();
-        
-        invoiceObj1.printData();
-        invoiceObj2.printData();
-        
-        
+        System.out.println(customerObj);
+        System.out.println(customerObj2);
+        System.out.println(customerObj3);
         
     }
 }

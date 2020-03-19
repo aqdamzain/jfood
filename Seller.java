@@ -131,7 +131,9 @@ public class Seller
      /**
      * This method is used to print data of seller.
      */       
-    public void printData(){
-        System.out.println(name);
+    @Override
+    public String toString(){
+        String string = "Id: "+this.id+"\nName: "+this.name+"\nPhone Number: "+ this.phoneNumber+"\nLocation: "+this.location.getCity()+", "+location.getProvince();
+        return string;
     }
 }

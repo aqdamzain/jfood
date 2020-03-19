@@ -4,6 +4,9 @@
  * @version 0.2
  * @since 28-02-2020
  */
+import java.util.*;
+import java.util.regex.*;
+import java.text.*;
 public class Customer
 {
      /**
@@ -25,7 +28,7 @@ public class Customer
      /**
      * Stores join date of customer
      */    
-    private String joinDate;
+    private Calendar joinDate;
     
      /**
      * Constructor for objects of class Customer.
@@ -35,13 +38,36 @@ public class Customer
      * @param password is the password of the customer to login app
      * @param joinDate is the date when customer registered on app
      */    
-    public Customer(int id, String name, String email, String password, String joinDate)
+    public Customer(int id, String name, String email, String password, Calendar joinDate)
     {
+        setEmail(email);
+        setPassword(password);
         this.id = id;
         this.name = name;
-        this.email = email;
         this.password = password;
         this.joinDate = joinDate;
+    }
+    
+    public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth)
+    {
+        setEmail(email);
+        setPassword(password);
+        this.id = id;
+        this.name = name;
+        this.password = password;
+        this.joinDate.set(Calendar.YEAR, year);
+        this.joinDate.set(Calendar.MONTH, month);
+        this.joinDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        
+    }
+    
+        public Customer(int id, String name, String email, String password)
+    {
+        setEmail(email);
+        setPassword(password);
+        this.id = id;
+        this.name = name;
+        this.password = password;
     }
     
      /**
@@ -89,7 +115,12 @@ public class Customer
      * @param email is the email of the customer to login app
      */    
     public void setEmail(String email){
-        this.email = email;
+        String regex = "^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$";
+        if(Pattern.matches(regex, email)){
+            this.email = email;
+        }else{
+            this.email ="";
+        }
     }
     
      /**
@@ -105,14 +136,19 @@ public class Customer
      * @param password is the password of the customer to login app 
      */     
     public void setPassword(String password) {
-        this.password = password;
+        String regex = "((?=.*[a-z])(?=.*d)(?=.*[A-Z]).{6,})";
+        if(Pattern.matches(regex, password)){
+            this.password = password;
+        }else{
+            this.password ="";
+        }
     }
 
      /**
      * This method is used to retrieves joinDate of customer.
      * @return String which returns joinDate of customer.
      */     
-    public String getJoinDate() {
+    public Calendar getJoinDate() {
         return joinDate;
     }
 
@@ -120,14 +156,24 @@ public class Customer
      * This method is used to manage joinDate of customer.
      * @param joinDate is the date when customer registered on app
      */      
-    public void setJoinDate(String joinDate) {
+    public void setJoinDate(Calendar joinDate) {
         this.joinDate = joinDate;
+    }
+    
+    public void setJoinDate(int year, int month, int dayOfMonth) {
+        this.joinDate.set(Calendar.YEAR, year);
+        this.joinDate.set(Calendar.MONTH, month);
+        this.joinDate.set(Calendar.DAY_OF_MONTH, dayOfMonth);
     }
 
      /**
      * This method is used to print data of customer.
-     */       
-    public void printData(){
-        System.out.println(name);
+     */
+    @Override
+    public String toString(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        String string = "Id: "+this.id+"\nNama: "+this.name+"\nEmail: "+email+"\nPassword: "+password+"\nJoin Date: " +
+        dateFormat.format(joinDate.getTime());
+        return string;
     }
 }

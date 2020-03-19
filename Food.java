@@ -1,5 +1,4 @@
 
-
 public class Food
 {
      /**
@@ -127,13 +126,10 @@ public class Food
      /**
      * This method is used to print data of food.
      */      
-    public void printData(){
-        System.out.println("========FOOD========");
-        System.out.println("ID: " + this.id);
-        System.out.println("Name: " + this.name);
-        System.out.println("Seller: " + this.seller.getName());
-        System.out.println("City: " + this.seller.getLocation().getCity());
-        System.out.println("Price: " + this.price);
-         System.out.println("Category: " + this.category.toString());
+    @Override
+    public String toString(){
+        String string = "Id: "+this.id+"\nName of Food: "+this.name+"\nSeller: "+this.seller.getName()+"\nCity: "+this.seller.getLocation().getCity()+"\nPrice: "
+        +this.price+"\nCategory: "+this.category;
+        return string;
     }
 }
