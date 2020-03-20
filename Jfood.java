@@ -23,17 +23,16 @@ public class Jfood
   
     public static void main(String[] args)
     {
-        Calendar calendar = Calendar.getInstance();  
-        Customer customerObj = new Customer( 1,"Ukok","Uko..k@gmail.com","uko",calendar);
-        Customer customerObj2 = new Customer( 2,"Ukok","Ukok~.@gmail.com","Ukok22",2019,2,19);
-        Customer customerObj3 = new Customer( 3,"Ukok",".Ukok@gmai.com","Ukokkoku123");
+        Location locationObj = new Location( "Padang", "Sumatera Barat", "Tempat lahir Penjual");
+        Seller sellerObj = new Seller( 1, "Aqdam", "aqdamzh@gmail.com", "085934543920", locationObj);
+        Food foodObj = new Food( 1, "Starbuck", sellerObj, 9000, FoodCategory.Coffee);
+        Customer customerObj = new Customer( 3,"Ukok",".Ukok@gmai.com","Ukokkoku123");
         
-        System.out.println(customerObj);
-        System.out.println(customerObj2);
-        System.out.println(customerObj3);
-        customerObj.setEmail("_Uk0k.1~&@yaoo-.co.id");
-        customerObj.setPassword("123Kokt$_");
-        System.out.println(customerObj);
+        CashInvoice invoiceObj1 = new CashInvoice( 1, foodObj, customerObj, InvoiceStatus.Finished);
+        CashInvoice invoiceObj2 = new CashInvoice( 2, foodObj, customerObj, InvoiceStatus.Finished, 2000);
+        
+        System.out.println(invoiceObj1);
+        System.out.println(invoiceObj2);
         
     }
 }

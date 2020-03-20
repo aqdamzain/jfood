@@ -4,6 +4,7 @@
  * @version 0.2
  * @since 28-02-2020
  */
+import java.util.*;
 public abstract class Invoice
 {
      /**
@@ -19,7 +20,7 @@ public abstract class Invoice
      /**
      * Stores date of invoice
      */     
-    private String date;
+    private Calendar date;
     
      /**
      * Stores total pice of invoice
@@ -45,11 +46,11 @@ public abstract class Invoice
      * @param customer is the customer in the invoice
      * @param totalPrice is the total of the price in invoice
      */    
-    public Invoice(int id, Food food, String date, Customer customer, InvoiceStatus invoiceStatus)
+    public Invoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
     {
         this.id = id;
         this.food = food;
-        this.date = date;
+        this.date = Calendar.getInstance();
         this.customer = customer;
         this.invoiceStatus = invoiceStatus;
         
@@ -91,7 +92,7 @@ public abstract class Invoice
      * This method is used to retrieves date of invoice.
      * @return int which returns id date of invoice.
      */     
-    public String getDate() {
+    public Calendar getDate() {
         return date;
     }
 
@@ -99,8 +100,12 @@ public abstract class Invoice
      * This method is used to manage date of invoice.
      * @param date is date for invoice
      */    
-    public void setDate(String date) {
+    public void setDate(Calendar date) {
         this.date = date;
+    }
+    
+    public void setDate(int year, int month, int dayOfMonth) {
+        this.date = new GregorianCalendar(year,month-1,dayOfMonth);
     }
 
      /**
@@ -142,10 +147,4 @@ public abstract class Invoice
     public void setInvoiceStatus(InvoiceStatus status) {
         this.invoiceStatus = invoiceStatus;
     }
-    
-     /**
-     * This method is used to print data of invoice.
-     */      
-    public abstract void printData();
-    
 }

@@ -1,18 +1,18 @@
-
+import java.text.*;
 public class CashlessInvoice extends Invoice
 {
     
     private final static PaymentType PAYMENT_TYPE = PaymentType.Cashless;
     private Promo promo;
     
-    public CashlessInvoice( int id, Food food, String date, Customer customer,
+    public CashlessInvoice( int id, Food food, Customer customer,
     InvoiceStatus invoiceStatus){
-        super( id, food, date, customer, invoiceStatus);
+        super( id, food, customer, invoiceStatus);
     }
     
-    public CashlessInvoice( int id, Food food, String date, Customer customer,
+    public CashlessInvoice( int id, Food food, Customer customer,
     InvoiceStatus invoiceStatus, Promo promo){
-        super( id, food, date, customer, invoiceStatus);
+        super( id, food, customer, invoiceStatus);
         this.promo = promo;
     }
     
@@ -37,16 +37,15 @@ public class CashlessInvoice extends Invoice
     }
     
     @Override
-    public void printData(){
-        System.out.println("==============INVOICE============");
-        System.out.println("ID: " + super.getId());
-        System.out.println("Food: " + super.getFood().getName());
-        System.out.println("Date: " + super.getDate());
-        System.out.println("Customer: " + super.getCustomer().getName());
+    public String toString(){
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
+        String spromo = "";
         if( !(promo==null) && promo.getActive() && super.getFood().getPrice() > promo.getMinPrice()){
-            System.out.println("Promo: " + promo.getCode());
+            spromo = "\nPromo: " + promo.getCode();
         }
-        System.out.println("Total Price: " + super.totalPrice);
-        System.out.println("Payment Type: " +  PAYMENT_TYPE);
+        String string = "\nID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + dateFormat.format(super.getDate().getTime()) + "\nCustomer: " + super.getCustomer().getName() + spromo
+        + "\nTotal Price: " + super.totalPrice + "\nPayment Type: " +  PAYMENT_TYPE ;
+        
+        return string;
     }
 }

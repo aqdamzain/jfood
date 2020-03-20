@@ -28,7 +28,7 @@ public class Customer
      /**
      * Stores join date of customer
      */    
-    private Calendar joinDate = Calendar.getInstance();
+    private Calendar joinDate;
     
      /**
      * Constructor for objects of class Customer.
@@ -63,6 +63,7 @@ public class Customer
     {
         this.setEmail(email);
         this.setPassword(password);
+        this.joinDate = Calendar.getInstance();
         
         this.id = id;
         this.name = name;
