@@ -27,9 +27,10 @@ public class Jfood
         Seller sellerObj = new Seller( 1, "Aqdam", "aqdamzh@gmail.com", "085934543920", locationObj);
         Food foodObj = new Food( 1, "Starbuck", sellerObj, 9000, FoodCategory.Coffee);
         Customer customerObj = new Customer( 3,"Ukok",".Ukok@gmai.com","Ukokkoku123");
+        Promo promoObj1 = new Promo( 1, "PROMO1", 1000, 6000, true);
         
         CashInvoice invoiceObj1 = new CashInvoice( 1, foodObj, customerObj, InvoiceStatus.Finished);
-        CashInvoice invoiceObj2 = new CashInvoice( 2, foodObj, customerObj, InvoiceStatus.Finished, 2000);
+        CashlessInvoice invoiceObj2 = new CashlessInvoice( 2, foodObj, customerObj, InvoiceStatus.Finished, promoObj1);
         
         System.out.println(invoiceObj1);
         System.out.println(invoiceObj2);
