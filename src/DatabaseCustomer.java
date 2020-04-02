@@ -43,7 +43,7 @@ public class DatabaseCustomer
         }
         if(status){
             CUSTOMER_DATABASE.add(customer);
-            lastId = lastId + 1;
+            lastId = customer.getId();
         }
 
         return status;

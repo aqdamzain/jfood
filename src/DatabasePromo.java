@@ -39,7 +39,7 @@ public class DatabasePromo
             if(!(fPromo.getCode().equals(promo.getCode()))){
                 status = true;
                 PROMO_DATABASE.add(promo);
-                lastId = lastId + 1;
+                lastId = promo.getId();
             }
         }
         return status;

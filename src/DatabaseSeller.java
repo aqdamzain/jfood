@@ -25,7 +25,7 @@ public class DatabaseSeller
 
     public static boolean addSeller(Seller seller){
         SELLER_DATABASE.add(seller);
-        lastId = lastId + 1;
+        lastId = seller.getId();
         return true;
     }
 

@@ -50,10 +50,9 @@ public class CashlessInvoice extends Invoice
             foodsPrice = foodsPrice + food.getPrice();
             foodsName = food.getName() + ". ";
         }
-        if( !(promo==null) && promo.getActive() && foodsPrice > promo.getMinPrice()){
-            spromo = "\nPromo: " + promo.getCode();
-        }
-        String string = "\nID: " + super.getId() + "\nFood: " + foodsName + "\nDate: " + dateFormat.format(super.getDate().getTime()) + "\nCustomer: " + super.getCustomer().getName() + spromo
+        if(!(promo==null)){
+        spromo = "\nPromo: " + promo.getCode();}
+        String string = "\nID: " + super.getId() + "\nFood: " + super.totalPrice + "\nDate: " + dateFormat.format(super.getDate().getTime()) + "\nCustomer: " + super.getCustomer().getName() + spromo
         + "\nTotal Price: " + super.totalPrice + "\nPayment Type: " +  PAYMENT_TYPE ;
         
         return string;
