@@ -172,7 +172,7 @@ public class Customer
     public String toString(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
         String string = "\nId: "+this.id+"\nNama: "+this.name+"\nEmail: "+email+"\nPassword: "+password+"\nJoin Date: " +
-        dateFormat.format(joinDate.getTime());
+        dateFormat.format(joinDate.getTime())+"\n";
         return string;
     }
 }

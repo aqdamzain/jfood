@@ -31,11 +31,11 @@ public class Jfood
         DatabaseCustomer.addCustomer(new Customer( DatabaseCustomer.getLastId()+1,"Ukok","Ukok@gmail.com","Ukokkoku69"));
         DatabaseCustomer.addCustomer(new Customer( DatabaseCustomer.getLastId()+1,"Frenzel","Frenzel@gmail.com","Frenzel23"));
         DatabaseFood.addFood(new Food( DatabaseFood.getLastId()+1, "Starbuck Latte", DatabaseSeller.getSellerById(1), 40000, FoodCategory.Coffee));
-        DatabaseFood.addFood(new Food( DatabaseFood.getLastId()+1, "KapalApi Susu", DatabaseSeller.getSellerById(1), 40000, FoodCategory.Coffee));
-        DatabaseFood.addFood(new Food( DatabaseFood.getLastId()+1, "Kelelawar Crispy", DatabaseSeller.getSellerById(1), 40000, FoodCategory.Snacks));
+        DatabaseFood.addFood(new Food( DatabaseFood.getLastId()+1, "KapalApi Susu", DatabaseSeller.getSellerById(1), 6000, FoodCategory.Coffee));
+        DatabaseFood.addFood(new Food( DatabaseFood.getLastId()+1, "Kelelawar Crispy", DatabaseSeller.getSellerById(1), 30000, FoodCategory.Snacks));
 
         System.out.println(DatabaseCustomer.getCustomerDatabase());
-        System.out.println(DatabaseFood.getFoodDatabase());
+        System.out.println(DatabaseFood.getFoodByCategory(FoodCategory.Coffee));
         
     }
 }
