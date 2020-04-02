@@ -133,7 +133,7 @@ public class Seller
      */       
     @Override
     public String toString(){
-        String string = "Id: "+this.id+"\nName: "+this.name+"\nPhone Number: "+ this.phoneNumber+"\nLocation: "+this.location.getCity()+", "+location.getProvince();
+        String string = "\nId: "+this.id+"\nName: "+this.name+"\nPhone Number: "+ this.phoneNumber+"\nLocation: "+this.location.getCity()+", "+location.getProvince();
         return string;
     }
 }

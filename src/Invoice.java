@@ -15,7 +15,7 @@ public abstract class Invoice
      /**
      * Stores object of the food in invoice
      */      
-    private Food food;
+    private ArrayList<Food> foods;
     
      /**
      * Stores date of invoice
@@ -46,13 +46,13 @@ public abstract class Invoice
      * @param customer is the customer in the invoice
      * @param totalPrice is the total of the price in invoice
      */    
-    public Invoice(int id, Food food, Customer customer, InvoiceStatus invoiceStatus)
+    public Invoice(int id, ArrayList<Food> foods, Customer customer)
     {
         this.id = id;
-        this.food = food;
+        this.foods = foods;
         this.date = Calendar.getInstance();
         this.customer = customer;
-        this.invoiceStatus = invoiceStatus;
+        this.invoiceStatus = InvoiceStatus.Ongoing;
         
     }
 
@@ -76,16 +76,16 @@ public abstract class Invoice
      * This method is used to retrieves id food of invoice.
      * @return int which returns id food of invoice.
      */     
-    public Food getFood() {
-        return food;
+    public ArrayList<Food> getFoods() {
+        return foods;
     }
 
      /**
      * This method is used to manage id food of invoice.
      * @param idFood is id food for invoice
      */       
-    public void setFood(int idFood) {
-        this.food = food;
+    public void setFoods( ArrayList<Food> foods) {
+        this.foods = foods;
     }
 
      /**

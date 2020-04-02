@@ -23,17 +23,19 @@ public class Jfood
   
     public static void main(String[] args)
     {
-        Location locationObj = new Location( "Padang", "Sumatera Barat", "Tempat lahir Penjual");
-        Seller sellerObj = new Seller( 1, "Aqdam", "aqdamzh@gmail.com", "085934543920", locationObj);
-        Food foodObj = new Food( 1, "Starbuck", sellerObj, 9000, FoodCategory.Coffee);
-        Customer customerObj = new Customer( 3,"Ukok",".Ukok@gmai.com","Ukokkoku123");
-        Promo promoObj1 = new Promo( 1, "PROMO1", 1000, 6000, true);
-        
-        CashInvoice invoiceObj1 = new CashInvoice( 1, foodObj, customerObj, InvoiceStatus.Finished);
-        CashlessInvoice invoiceObj2 = new CashlessInvoice( 2, foodObj, customerObj, InvoiceStatus.Finished, promoObj1);
-        
-        System.out.println(invoiceObj1);
-        System.out.println(invoiceObj2);
+        Location locationObj = new Location( "Padang", "Sumatera Barat", "Penjual Berjualan di tepi pantai");
+
+        DatabaseSeller.addSeller(new Seller( DatabaseSeller.getLastId()+1, "Aqdam", "aqdamzh@gmail.com", "085934543920", locationObj));
+
+        DatabaseCustomer.addCustomer(new Customer( DatabaseCustomer.getLastId()+1,"Ukok","Ukok@gmail.com","Ukokkoku123"));
+        DatabaseCustomer.addCustomer(new Customer( DatabaseCustomer.getLastId()+1,"Ukok","Ukok@gmail.com","Ukokkoku69"));
+        DatabaseCustomer.addCustomer(new Customer( DatabaseCustomer.getLastId()+1,"Frenzel","Frenzel@gmail.com","Frenzel23"));
+        DatabaseFood.addFood(new Food( DatabaseFood.getLastId()+1, "Starbuck Latte", DatabaseSeller.getSellerById(1), 40000, FoodCategory.Coffee));
+        DatabaseFood.addFood(new Food( DatabaseFood.getLastId()+1, "KapalApi Susu", DatabaseSeller.getSellerById(1), 40000, FoodCategory.Coffee));
+        DatabaseFood.addFood(new Food( DatabaseFood.getLastId()+1, "Kelelawar Crispy", DatabaseSeller.getSellerById(1), 40000, FoodCategory.Snacks));
+
+        System.out.println(DatabaseCustomer.getCustomerDatabase());
+        System.out.println(DatabaseFood.getFoodDatabase());
         
     }
 }

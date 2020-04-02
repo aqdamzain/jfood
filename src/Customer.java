@@ -171,7 +171,7 @@ public class Customer
     @Override
     public String toString(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-        String string = "Id: "+this.id+"\nNama: "+this.name+"\nEmail: "+email+"\nPassword: "+password+"\nJoin Date: " +
+        String string = "\nId: "+this.id+"\nNama: "+this.name+"\nEmail: "+email+"\nPassword: "+password+"\nJoin Date: " +
         dateFormat.format(joinDate.getTime());
         return string;
     }

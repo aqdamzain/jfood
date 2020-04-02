@@ -1,17 +1,17 @@
 import java.text.*;
+import java.util.ArrayList;
+
 public class CashInvoice extends Invoice
 {
     private final static PaymentType PAYMENT_TYPE = PaymentType.Cash;
     private int deliveryFee;
     
-    public CashInvoice( int id, Food food, Customer customer,
-    InvoiceStatus invoiceStatus){
-        super( id, food, customer, invoiceStatus);
+    public CashInvoice(int id, ArrayList<Food> foods, Customer customer){
+        super( id, foods, customer);
     }
     
-    public CashInvoice( int id, Food food, Customer customer,
-    InvoiceStatus invoiceStatus, int deliveryFee){
-        super( id, food, customer, invoiceStatus);
+    public CashInvoice( int id, ArrayList<Food> food, Customer customer, int deliveryFee){
+        super( id, food, customer);
         this.deliveryFee = deliveryFee;
     }
     
@@ -31,9 +31,12 @@ public class CashInvoice extends Invoice
     @Override
     public void setTotalPrice(){
         if(!(deliveryFee==0)){
-            super.totalPrice = super.getFood().getPrice() + deliveryFee;
+            for (Food food : super.getFoods()){
+            super.totalPrice = super.totalPrice + food.getPrice();}
+            super.totalPrice = super.totalPrice + deliveryFee;
         }else{
-            super.totalPrice = super.getFood().getPrice();
+            for (Food food : super.getFoods()){
+                super.totalPrice = super.totalPrice + food.getPrice();}
         }
         
     }
@@ -41,7 +44,11 @@ public class CashInvoice extends Invoice
     @Override
     public String toString(){
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMM yyyy");
-        String string = "ID: " + super.getId() + "\nFood: " + super.getFood().getName() + "\nDate: " + dateFormat.format(super.getDate().getTime()) + "\nCustomer: " + super.getCustomer().getName()
+        String nameFoods = "";
+        for (Food food : super.getFoods()){
+            nameFoods = food.getName() + ", ";
+        }
+        String string = "ID: " + super.getId() + "\nFood: " + nameFoods + "\nDate: " + dateFormat.format(super.getDate().getTime()) + "\nCustomer: " + super.getCustomer().getName()
         + "\nDelivery Fee: " + this.deliveryFee + "\nTotal Price: " + super.totalPrice + "\nPayment Type: " +  PAYMENT_TYPE ;
         
         return string;
