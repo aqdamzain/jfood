@@ -5,7 +5,7 @@ public class DatabasePromo
     private static ArrayList<Promo> PROMO_DATABASE = new ArrayList<>();
     private static int lastId = 0;
 
-    public static ArrayList<Promo> etPromoDatabase(){
+    public static ArrayList<Promo> getPromoDatabase(){
         return PROMO_DATABASE;
     }
 
