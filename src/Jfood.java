@@ -50,8 +50,15 @@ public class Jfood
         DatabaseInvoice.getInvoiceByCustomer(1).get(DatabaseInvoice.getInvoiceByCustomer(1).size()-1).setInvoiceStatus(InvoiceStatus.Finished);
 
         DatabaseInvoice.addInvoice(new CashlessInvoice( DatabaseFood.getLastId()+1, food1, DatabaseCustomer.getCustomerById(2), DatabasePromo.getPromoById(1)));
+        DatabasePromo.getPromoById(1).setActive(true);
 
-        
+        for(Invoice invoice: DatabaseInvoice.getInvoiceDatabase()){
+            invoice.setTotalPrice();
+        }
+        System.out.println(DatabaseInvoice.getInvoiceDatabase());
+
+
+
 
 
 
