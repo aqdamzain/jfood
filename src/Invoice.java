@@ -25,7 +25,7 @@ public abstract class Invoice
      /**
      * Stores total pice of invoice
      */       
-    protected int totalPrice;
+    protected int totalPrice = 0;
     
      /**
      * Stores total customer of invoice
@@ -145,6 +145,6 @@ public abstract class Invoice
     }
 
     public void setInvoiceStatus(InvoiceStatus status) {
-        this.invoiceStatus = invoiceStatus;
+        this.invoiceStatus = status;
     }
 }

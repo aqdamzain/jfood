@@ -128,7 +128,8 @@ public class Food
      */      
     @Override
     public String toString(){
-        String string = "\nId: "+this.id+"\nName of Food: "+this.name+"\nSeller: "+this.seller.getName()+"\nCity: "+this.seller.getLocation().getCity()+"\nPrice: "
+        String string = "\n=========== FOOD ===========" +
+                "\nId: "+this.id+"\nName of Food: "+this.name+"\nSeller: "+this.seller.getName()+"\nCity: "+this.seller.getLocation().getCity()+"\nPrice: "
         +this.price+"\nCategory: "+this.category+"\n";
         return string;
     }

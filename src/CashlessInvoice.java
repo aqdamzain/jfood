@@ -7,12 +7,12 @@ public class CashlessInvoice extends Invoice
     private final static PaymentType PAYMENT_TYPE = PaymentType.Cashless;
     private Promo promo;
     
-    public CashlessInvoice( int id, ArrayList<Food> food, Customer customer){
-        super( id, food, customer);
+    public CashlessInvoice( int id, ArrayList<Food> foods, Customer customer){
+        super( id, foods, customer);
     }
     
-    public CashlessInvoice(int id, ArrayList<Food> food, Customer customer, Promo promo){
-        super( id, food, customer);
+    public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer, Promo promo){
+        super( id, foods, customer);
         this.promo = promo;
     }
     
@@ -48,12 +48,13 @@ public class CashlessInvoice extends Invoice
         String foodsName = "";
         for (Food food : super.getFoods()){
             foodsPrice = foodsPrice + food.getPrice();
-            foodsName = food.getName() + ". ";
+            foodsName = foodsName + food.getName() + ", ";
         }
         if(!(promo==null)){
         spromo = "\nPromo: " + promo.getCode();}
-        String string = "\nID: " + super.getId() + "\nFood: " + super.totalPrice + "\nDate: " + dateFormat.format(super.getDate().getTime()) + "\nCustomer: " + super.getCustomer().getName() + spromo
-        + "\nTotal Price: " + super.totalPrice + "\nPayment Type: " +  PAYMENT_TYPE ;
+        String string = "\n=========== INVOICE ===========" +
+                "\nID: " + super.getId() + "\nFood: " + foodsName + "\nDate: " + dateFormat.format(super.getDate().getTime()) + "\nCustomer: " + super.getCustomer().getName() + spromo
+        + "\nTotal Price: " + super.totalPrice + "\nPayment Type: " +  PAYMENT_TYPE + "\nInvoice Status: " + super.getInvoiceStatus() + "\n";
         
         return string;
     }

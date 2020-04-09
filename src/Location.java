@@ -82,7 +82,8 @@ public class Location
      */     
     @Override
     public String toString(){
-        String string = "Province: "+this.province+"\nCity: "+this.city+"\nDescription: "+ this.description;
+        String string = "\n=========== LOCATION ===========" +
+                "\nProvince: "+this.province+"\nCity: "+this.city+"\nDescription: "+ this.description + "\n";
         return string;
     }
 }

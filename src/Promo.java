@@ -57,7 +57,8 @@ public class Promo
     
     @Override
     public String toString(){
-        String string = "ID: "+this.id+"\nCode: "+this.code+"\nDiscount: "+this.discount+"\nMin Price: "+this.minPrice+"\nActive: "+this.active+"\n";
+        String string = "\n=========== PROMO ===========" +
+                "\nID: "+this.id+"\nCode: "+this.code+"\nDiscount: "+this.discount+"\nMin Price: "+this.minPrice+"\nActive: "+this.active+"\n";
         return string;
     }
 }

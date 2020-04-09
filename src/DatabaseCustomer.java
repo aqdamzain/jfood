@@ -20,46 +20,53 @@ public class DatabaseCustomer
         return lastId;
     }
 
-    public static Customer getCustomerById(int id){
+    public static Customer getCustomerById(int id) throws CustomerNotFoundException {
         Customer rCustomer = null;
+        boolean eVar = true;
         for (Customer customer: CUSTOMER_DATABASE) {
             if(customer.getId()==id){
                 rCustomer = customer;
+                eVar = false;
             }
+        }
+        if(eVar){
+            throw new CustomerNotFoundException(id);
         }
         return rCustomer;
     }
 
-    public static boolean addCustomer(Customer customer){
-        boolean status = false;
-        if(CUSTOMER_DATABASE.isEmpty()){
-            status = true;
-        }else{
+    public static boolean addCustomer(Customer customer) throws EmailAlreadyExistsException {
+        boolean rVar = true;
+        if(!(CUSTOMER_DATABASE.isEmpty())){
             for (Customer fCustomer: CUSTOMER_DATABASE) {
-                if(!(fCustomer.getEmail().equals(customer.getEmail()))){
-                    status = true;
-                }
+                if(fCustomer.getEmail().equals(customer.getEmail())){
+                    rVar = false; }
             }
         }
-        if(status){
+        if(rVar){
             CUSTOMER_DATABASE.add(customer);
             lastId = customer.getId();
+        }else {
+            throw new EmailAlreadyExistsException(customer);
         }
-
-        return status;
+        return rVar;
     }
 
-    public static boolean removeCustomer(int id){
-        boolean status = false;
+    public static boolean removeCustomer(int id) throws CustomerNotFoundException {
+        boolean rVar = false;
+        int customerIndex = -1;
         for (Customer customer: CUSTOMER_DATABASE) {
             if(customer.getId()==id){
-                status=true;
+                customerIndex = CUSTOMER_DATABASE.indexOf(customer);
+                rVar=true;
             }
         }
-        if(status){
-            CUSTOMER_DATABASE.remove(id);
+        if(rVar){
+            CUSTOMER_DATABASE.remove(customerIndex);
+        }else{
+            throw new CustomerNotFoundException(id);
         }
-        return status;
+        return rVar;
     }
 
 }

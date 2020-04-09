@@ -13,71 +13,85 @@ public class DatabasePromo
         return  lastId;
     }
 
-    public static Promo getPromoById(int id){
+    public static Promo getPromoById(int id) throws PromoNotFoundException {
         Promo rPromo = null;
-        for (Promo promo: PROMO_DATABASE) {
-            if(promo.getId()==id){
-                rPromo = promo;
+        boolean eVar = true;
+        for (Promo fPromo: PROMO_DATABASE) {
+            if(fPromo.getId()==id){
+                rPromo = fPromo;
+                eVar = false;
             }
+        }
+        if (eVar){
+            throw new PromoNotFoundException(id);
         }
         return rPromo;
     }
 
     public static Promo getPromoByCode(String code){
         Promo rPromo = null;
-        for (Promo promo: PROMO_DATABASE) {
-            if(promo.getCode().equals(code)){
-                rPromo = promo;
+        for (Promo fPromo: PROMO_DATABASE) {
+            if(fPromo.getCode().equals(code)){
+                rPromo = fPromo;
             }
         }
         return rPromo;
     }
 
-    public static boolean addPromo(Promo promo){
-        boolean status = false;
-        for (Promo fPromo: PROMO_DATABASE) {
-            if(!(fPromo.getCode().equals(promo.getCode()))){
-                status = true;
-                PROMO_DATABASE.add(promo);
-                lastId = promo.getId();
+    public static boolean addPromo(Promo promo) throws PromoCodeAlreadyExistsException {
+        boolean rVar = true;
+        if(!(PROMO_DATABASE.isEmpty())){
+            for (Promo fPromo: PROMO_DATABASE) {
+                if(fPromo.getCode().equals(promo.getCode())){
+                    rVar = false; }
             }
         }
-        return status;
+        if(rVar){
+            PROMO_DATABASE.add(promo);
+            lastId = promo.getId();
+        }else{
+            throw new PromoCodeAlreadyExistsException(promo);
+        }
+        return rVar;
     }
 
     public static boolean activatePromo(int id){
-        boolean status = false;
+        boolean rVar = false;
         for (Promo fPromo: PROMO_DATABASE) {
             if(fPromo.getId()==id){
                 fPromo.setActive(true);
-                status = true;
+                rVar = true;
             }
         }
-        return status;
+        return rVar;
     }
 
     public static boolean deactivatePromo(int id){
-        boolean status = false;
+        boolean rVar = false;
         for (Promo fPromo: PROMO_DATABASE) {
             if(fPromo.getId()==id){
                 fPromo.setActive(false);
-                status = true;
+                rVar = true;
             }
         }
-        return status;
+        return rVar;
     }
 
-    public static boolean removePromo(int id){
-        boolean status = false;
-        for (Promo promo: PROMO_DATABASE) {
-            if(promo.getId()==id){
-                status=true;
+    public static boolean removePromo(int id) throws PromoNotFoundException {
+        boolean rVar = false;
+        int promoIndex = -1;
+        for (Promo fPromo: PROMO_DATABASE) {
+            if(fPromo.getId()==id){
+                promoIndex = PROMO_DATABASE.indexOf(fPromo);
+                rVar = true;
             }
         }
-        if(status){
-            PROMO_DATABASE.remove(id);
+        if(rVar){
+            PROMO_DATABASE.remove(promoIndex);
+        }else{
+            throw new PromoNotFoundException(id);
         }
-        return status;
+        return rVar;
     }
 
 }

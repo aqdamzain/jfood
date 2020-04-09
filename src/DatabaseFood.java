@@ -20,12 +20,17 @@ public class DatabaseFood
         return lastId;
     }
 
-    public static Food getFoodById(int id){
+    public static Food getFoodById(int id) throws FoodNotFoundException{
+        boolean eVar = true;
         Food rFood = null;
         for (Food food: FOOD_DATABASE) {
             if(food.getId()==id){
                 rFood = food;
+                eVar = false;
             }
+        }
+        if(eVar){
+            throw new FoodNotFoundException(id);
         }
         return rFood;
     }
@@ -56,17 +61,21 @@ public class DatabaseFood
         return true;
     }
 
-    public static boolean removeFood(int id){
-        boolean status = false;
+    public static boolean removeFood(int id) throws FoodNotFoundException{
+        boolean rVar = false;
+        int foodIndex = -1;
         for (Food food: FOOD_DATABASE) {
             if(food.getId()==id){
-                status=true;
+                foodIndex = FOOD_DATABASE.indexOf(food);
+                rVar=true;
             }
         }
-        if(status){
-            FOOD_DATABASE.remove(id);
+        if(rVar){
+            FOOD_DATABASE.remove(foodIndex);
+        }else{
+            throw new FoodNotFoundException(id);
         }
-        return status;
+        return rVar;
     }
 
 }
