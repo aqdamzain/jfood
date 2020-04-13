@@ -102,7 +102,7 @@ public class Jfood
             System.out.println(e.getMessage());
         }
 
-        //TEST PROMO id EXCEPTION
+        //TEST FOOD id EXCEPTION
         try {
             System.out.println(DatabaseFood.getFoodById(3));
         }catch (FoodNotFoundException e){
@@ -172,28 +172,50 @@ public class Jfood
             e.printStackTrace();
         }
 
-        //insert invoice object to DATABASE
+        //insert invoice object to DATABASE and test exception
         try {
-            DatabaseInvoice.addInvoice(new CashlessInvoice( DatabaseInvoice.getLastId()+1, food1, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(1)));
+            try {
+                DatabaseInvoice.addInvoice(new CashlessInvoice( DatabaseInvoice.getLastId()+1, food1, DatabaseCustomer.getCustomerById(1), DatabasePromo.getPromoById(1)));
+            } catch (OngoingInvoiceAlreadyExistsException e) {
+                System.out.println(e.getMessage());
+            }
         } catch (CustomerNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         } catch (PromoNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
+        }
+        //same customer Invoice (customer id 1)
+        try {
+            try {
+                DatabaseInvoice.addInvoice(new CashInvoice( DatabaseInvoice.getLastId()+1, food2, DatabaseCustomer.getCustomerById(1), 1));
+            } catch (OngoingInvoiceAlreadyExistsException e) {
+                System.out.println(e.getMessage());
+            }
+        } catch (CustomerNotFoundException e) {
+            System.out.println(e.getMessage());
         }
         try {
-            DatabaseInvoice.addInvoice(new CashInvoice( DatabaseInvoice.getLastId()+1, food2, DatabaseCustomer.getCustomerById(2), 1));
+            try {
+                DatabaseInvoice.addInvoice(new CashInvoice( DatabaseInvoice.getLastId()+1, food3, DatabaseCustomer.getCustomerById(3), 1));
+            } catch (OngoingInvoiceAlreadyExistsException e) {
+                System.out.println(e.getMessage());
+            }
         } catch (CustomerNotFoundException e) {
-            e.printStackTrace();
+            System.out.println(e.getMessage());
         }
-        try {
-            DatabaseInvoice.addInvoice(new CashInvoice( DatabaseInvoice.getLastId()+1, food3, DatabaseCustomer.getCustomerById(3), 1));
-        } catch (CustomerNotFoundException e) {
-            e.printStackTrace();
-        }
+        System.out.println("====== YANG MASUK DATABASE INVOICE ======");
+        System.out.println(DatabaseInvoice.getInvoiceDatabase());
 
-        System.out.println("\n//Calculate invoice using thread");
-        for( Invoice invoice : DatabaseInvoice.getInvoiceDatabase()){
-            new Thread(new PriceCalculator(invoice)).start();
+        //test invoice id not found
+        try {
+            DatabaseInvoice.getInvoiceById(3);
+        } catch (InvoiceNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+        try {
+            DatabaseInvoice.removeInvoice(3);
+        } catch (InvoiceNotFoundException e) {
+            System.out.println(e.getMessage());
         }
     }
 }
