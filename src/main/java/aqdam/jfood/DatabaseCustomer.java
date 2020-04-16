@@ -70,4 +70,19 @@ public class DatabaseCustomer
         return rVar;
     }
 
+    public static Customer getCustomerLogin(String email, String password){
+        boolean rVar = false;
+        int customerIndex = -1;
+        for (Customer customer: CUSTOMER_DATABASE) {
+            if(customer.getEmail().equals(email) && customer.getPassword().equals(password)){
+                customerIndex = CUSTOMER_DATABASE.indexOf(customer);
+                rVar=true;
+            }
+        }
+        if(rVar){
+            return  CUSTOMER_DATABASE.get(customerIndex);
+        }
+        return null;
+    }
+
 }

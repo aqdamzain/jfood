@@ -34,7 +34,7 @@ public class Food
      * @param seller is the seller of the food
      * @param price is the price of the food
      * @param category is the category of the food
-     */    
+     */
     public Food( int id, String name, Seller seller, int price, FoodCategory category)
     {
         this.id = id;
@@ -44,7 +44,7 @@ public class Food
         this.category = category;
     }
 
-     /**
+    /**
      * This method is used to retrieves id of food.
      * @return int which returns id of food.
      */   

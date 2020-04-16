@@ -24,8 +24,8 @@ public class CustomerController {
         return customer;
     }
 
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    public Customer addCustomer(@RequestParam(value="name") String name,
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public Customer registerCustomer(@RequestParam(value="name") String name,
                                 @RequestParam(value="email") String email,
                                 @RequestParam(value="password") String password)
     {
@@ -38,4 +38,17 @@ public class CustomerController {
         }
         return customer;
     }
+
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Customer loginCustomer(@RequestParam(value="email") String email,
+                            @RequestParam(value="password") String password)
+    {
+        Customer customer = DatabaseCustomer.getCustomerLogin(email, password);
+        if(customer==null){
+            return null;
+        }
+        return customer;
+    }
+
+
 }
