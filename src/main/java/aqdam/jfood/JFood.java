@@ -41,6 +41,19 @@ public class JFood
         } catch (SellerNotFoundException e) {
             e.printStackTrace();
         }
-        SpringApplication.run(JFood.class, args);
+
+        try {
+            DatabaseCustomer.addCustomer(new Customer( DatabaseCustomer.getLastId()+1,"Aqdam","AqdamZh@gmail.com","Aqdam1234"));
+        }catch (EmailAlreadyExistsException e) {
+            System.out.println(e.getMessage());
+        }
+
+        try {
+            DatabaseCustomer.addCustomer(new Customer( DatabaseCustomer.getLastId()+1,"Frenzel","Frenzel@gmail.com","Frenzel234"));
+        }catch (EmailAlreadyExistsException e){
+            System.out.println(e.getMessage());
+        }
+
+            SpringApplication.run(JFood.class, args);
     }
 }
