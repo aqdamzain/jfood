@@ -58,7 +58,8 @@ public class InvoiceController {
     }
 
 
-    @RequestMapping(value = "/createCashInvoice", method = RequestMethod.POST)
+    @RequestMapping(value = "/createCashInvoice",
+            method = RequestMethod.POST, params = {"foodIdList","customerId", "deliveryFee"})
     public Invoice addCashInvoice(@RequestParam(value="foodIdList") ArrayList<Integer> foodIdList,
                         @RequestParam(value="customerId") int customerId,
                         @RequestParam(value="deliveryFee") int deliveryFee)
@@ -89,7 +90,38 @@ public class InvoiceController {
         return invoice;
     }
 
-    @RequestMapping(value = "/createCashlessInvoice", method = RequestMethod.POST)
+    @RequestMapping(value = "/createCashInvoice",
+            method = RequestMethod.POST, params = {"foodIdList","customerId"})
+    public Invoice addCashInvoice(@RequestParam(value="foodIdList") ArrayList<Integer> foodIdList,
+                                  @RequestParam(value="customerId") int customerId)
+    {
+        ArrayList<Food> foods = new ArrayList<>();
+        for(int foodId : foodIdList){
+            try {
+                foods.add(DatabaseFood.getFoodById(foodId));
+            } catch (FoodNotFoundException e) {
+                e.getMessage();
+            }
+        }
+        Invoice invoice = null;
+        try {
+            invoice = new CashInvoice(DatabaseInvoice.getLastId()+1, foods,
+                    DatabaseCustomer.getCustomerById(customerId));
+            invoice.setTotalPrice();
+        } catch (CustomerNotFoundException e) {
+            e.getMessage();
+            return null;
+        }
+        try {
+            DatabaseInvoice.addInvoice(invoice);
+        } catch (OngoingInvoiceAlreadyExistsException e) {
+            e.getMessage();
+            return null;
+        }
+        return invoice;
+    }
+
+    @RequestMapping(value = "/createCashlessInvoice", method = RequestMethod.POST, params = {"foodIdList", "customerId", "promoCode"})
     public Invoice addCashlessInvoice(@RequestParam(value="foodIdList") ArrayList<Integer> foodIdList,
                                   @RequestParam(value="customerId") int customerId,
                                   @RequestParam(value="promoCode") String promoCode)
@@ -106,6 +138,36 @@ public class InvoiceController {
         try {
             invoice = new CashlessInvoice(DatabaseInvoice.getLastId()+1, foods,
                     DatabaseCustomer.getCustomerById(customerId), DatabasePromo.getPromoByCode(promoCode));
+            invoice.setTotalPrice();
+        } catch (CustomerNotFoundException e) {
+            e.getMessage();
+            return null;
+        }
+        try {
+            DatabaseInvoice.addInvoice(invoice);
+        } catch (OngoingInvoiceAlreadyExistsException e) {
+            e.getMessage();
+            return null;
+        }
+        return invoice;
+    }
+
+    @RequestMapping(value = "/createCashlessInvoice", method = RequestMethod.POST, params = {"foodIdList", "customerId"})
+    public Invoice addCashlessInvoice(@RequestParam(value="foodIdList") ArrayList<Integer> foodIdList,
+                                      @RequestParam(value="customerId") int customerId)
+    {
+        ArrayList<Food> foods = new ArrayList<>();
+        for(int foodId : foodIdList){
+            try {
+                foods.add(DatabaseFood.getFoodById(foodId));
+            } catch (FoodNotFoundException e) {
+                e.getMessage();
+            }
+        }
+        Invoice invoice = null;
+        try {
+            invoice = new CashlessInvoice(DatabaseInvoice.getLastId()+1, foods,
+                    DatabaseCustomer.getCustomerById(customerId));
             invoice.setTotalPrice();
         } catch (CustomerNotFoundException e) {
             e.getMessage();

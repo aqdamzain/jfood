@@ -3,13 +3,15 @@ package aqdam.jfood.controller;
 import aqdam.jfood.*;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+
 @RequestMapping("/customer")
 @RestController
 public class CustomerController {
 
     @RequestMapping("")
-    public String indexPage(@RequestParam(value="name", defaultValue="world") String name) {
-        return "Hello " + name;
+    public ArrayList<Customer> getAllCustomer() {
+        return DatabaseCustomer.getCustomerDatabase();
     }
 
     @RequestMapping("/{id}")
