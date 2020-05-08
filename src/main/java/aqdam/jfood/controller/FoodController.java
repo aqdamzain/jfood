@@ -1,8 +1,12 @@
 package aqdam.jfood.controller;
 
-import aqdam.jfood.*;
+import aqdam.jfood.Food;
+import aqdam.jfood.FoodCategory;
+import aqdam.jfood.dao.DatabaseFoodPostgre;
+import aqdam.jfood.dao.DatabaseSellerPostgre;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 @RequestMapping("/food")
@@ -10,51 +14,64 @@ import java.util.ArrayList;
 public class FoodController {
 
     @RequestMapping("")
-    public ArrayList<Food> getAllFood(){
-        return DatabaseFood.getFoodDatabase();
+    public ArrayList<Food> getAllFood() {
+        try {
+            return DatabaseFoodPostgre.getAllFood();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping("/{id}")
     public Food getFoodById(@PathVariable int id) {
-        Food food = null;
         try {
-            food = DatabaseFood.getFoodById(id);
-        } catch (FoodNotFoundException e) {
-            e.getMessage();
-            return null;
+            return DatabaseFoodPostgre.getFoodById(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return food;
+        return null;
     }
 
     @RequestMapping("/seller/{id}")
     public ArrayList<Food> getFoodBySeller(@PathVariable int id) {
-        ArrayList<Food> food = new ArrayList<>();
-        food = DatabaseFood.getFoodBySeller(id);
-        return food;
+        try {
+            return DatabaseFoodPostgre.getFoodBySeller(id);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping("/category/{category}")
-    public ArrayList<Food> getFoodByCategory(@PathVariable FoodCategory category){
-        ArrayList<Food> food = new ArrayList<>();
-        food = DatabaseFood.getFoodByCategory(category);
-        return food;
+    public ArrayList<Food> getFoodByCategory(@PathVariable FoodCategory category) {
+        try {
+            return DatabaseFoodPostgre.getFoodByCategory(category);
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        return null;
     }
 
     @RequestMapping(value = "", method = RequestMethod.POST)
-    public Food addFood(@RequestParam(value="name") String name,
-                                     @RequestParam(value="price") int price,
-                                     @RequestParam(value="category") FoodCategory category,
-                                     @RequestParam(value="seller") int sellerId)
-    {
-        Food food = null;
+    public Food addFood(@RequestParam(value = "name") String name,
+                        @RequestParam(value = "price") int price,
+                        @RequestParam(value = "category") FoodCategory category,
+                        @RequestParam(value = "seller") int sellerId) {
         try {
-            food = new Food(DatabaseFood.getLastId()+1, name, DatabaseSeller.getSellerById(sellerId), price, category);
-            DatabaseFood.addFood(food);
-        } catch (SellerNotFoundException e) {
-            e.getMessage();
-            return null;
+            Food food = new Food(DatabaseFoodPostgre.getLastFoodId() + 1, name,
+                    DatabaseSellerPostgre.getSellerById(sellerId), price, category);
+            DatabaseFoodPostgre.insertFood(food);
+            return food;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return food;
+        return null;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public boolean deleteFood(@PathVariable int id) {
+        return DatabaseFoodPostgre.removeFood(id);
     }
 
 }

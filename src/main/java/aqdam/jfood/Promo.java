@@ -1,13 +1,12 @@
 package aqdam.jfood;
 
-public class Promo
-{
+public class Promo {
     private int id;
     private String code;
     private int discount;
     private int minPrice;
     private boolean active;
-    
+
     public Promo(int id, String code, int discount, int minPrice, boolean active) {
         this.id = id;
         this.code = code;
@@ -55,11 +54,11 @@ public class Promo
     public void setActive(boolean active) {
         this.active = active;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         String string = "\n=========== PROMO ===========" +
-                "\nID: "+this.id+"\nCode: "+this.code+"\nDiscount: "+this.discount+"\nMin Price: "+this.minPrice+"\nActive: "+this.active+"\n";
+                "\nID: " + this.id + "\nCode: " + this.code + "\nDiscount: " + this.discount + "\nMin Price: " + this.minPrice + "\nActive: " + this.active + "\n";
         return string;
     }
 }

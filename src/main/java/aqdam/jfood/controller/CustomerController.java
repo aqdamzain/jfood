@@ -1,55 +1,56 @@
 package aqdam.jfood.controller;
 
-import aqdam.jfood.*;
+import aqdam.jfood.Customer;
+import aqdam.jfood.dao.DatabaseCustomerPostgre;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 @RequestMapping("/customer")
 @RestController
 public class CustomerController {
 
-    @RequestMapping("")
-    public ArrayList<Customer> getAllCustomer() {
-        return DatabaseCustomer.getCustomerDatabase();
-    }
-
     @RequestMapping("/{id}")
     public Customer getCustomerById(@PathVariable int id) {
         Customer customer = null;
         try {
-            customer = DatabaseCustomer.getCustomerById(id);
-        } catch (CustomerNotFoundException e) {
-            e.getMessage();
-            return null;
+            customer = DatabaseCustomerPostgre.getCustomerById(id);
+            return customer;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return customer;
+        return null;
     }
 
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public Customer registerCustomer(@RequestParam(value="name") String name,
-                                @RequestParam(value="email") String email,
-                                @RequestParam(value="password") String password)
-    {
-        Customer customer = new Customer(DatabaseCustomer.getLastId()+1, name, email, password);
+    public Customer registerCustomer(@RequestParam(value = "name") String name,
+                                     @RequestParam(value = "email") String email,
+                                     @RequestParam(value = "password") String password) {
+        Customer customer = new Customer(DatabaseCustomerPostgre.getLastCustomerId() + 1, name, email, password);
         try {
-            DatabaseCustomer.addCustomer(customer);
-        } catch (EmailAlreadyExistsException e) {
-            e.getMessage();
-            return null;
+            DatabaseCustomerPostgre.insertCustomer(customer);
+            return customer;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return customer;
+        return null;
     }
 
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public Customer loginCustomer(@RequestParam(value="email") String email,
-                            @RequestParam(value="password") String password)
-    {
-        Customer customer = DatabaseCustomer.getCustomerLogin(email, password);
-        if(customer==null){
-            return null;
+    public Customer loginCustomer(@RequestParam(value = "email") String email,
+                                  @RequestParam(value = "password") String password) {
+        try {
+            Customer customer = DatabaseCustomerPostgre.getCustomer(email, password);
+            return customer;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
-        return customer;
+        return null;
+    }
+
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
+    public boolean deleteCustomer(@PathVariable int id) {
+        return DatabaseCustomerPostgre.removeCustomer(id);
     }
 
 

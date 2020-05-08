@@ -1,7 +1,8 @@
 package aqdam.jfood;
 
 public class PriceCalculator implements Runnable {
-    private Invoice invoice;
+    private final Invoice invoice;
+
     public PriceCalculator(Invoice invoice) {
         this.invoice = invoice;
     }
