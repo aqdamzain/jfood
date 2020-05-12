@@ -144,6 +144,11 @@ public class DatabaseInvoicePostgre {
     }
 
     public static void insertInvoice(Invoice invoice) throws SQLException {
+        for(Invoice invoice1 : getInvoiceByCustomer(invoice.getCustomer().getId())){
+            if(invoice1.getInvoiceStatus().equals(InvoiceStatus.Ongoing)){
+                throw new SQLException();
+            }
+        }
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
         PaymentType paymentType = invoice.getPaymentType();
@@ -162,7 +167,8 @@ public class DatabaseInvoicePostgre {
                         ")";
                 break;
             case Cashless:
-                int temp = 0;
+                Promo promo = ((CashlessInvoice) invoice).getPromo();
+
                 query = "insert into invoice values(" +
                         "'" + invoice.getId() + "', " +
                         "'" + invoice.getPaymentType() + "', " +
@@ -170,8 +176,8 @@ public class DatabaseInvoicePostgre {
                         "'" + invoice.getTotalPrice() + "', " +
                         "'" + invoice.getCustomer().getId() + "', " +
                         "'" + invoice.getInvoiceStatus() + "', " +
-                        "'" + 0 + "', " +
-                        "'" + ((CashlessInvoice) invoice).getPromo().getId() + "' " +
+                        "" + 0 + ", " +
+                        "" + ((promo!=null) ? promo.getId() : null) + " " +
                         ")";
                 break;
         }

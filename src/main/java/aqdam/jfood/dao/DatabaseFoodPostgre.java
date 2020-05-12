@@ -65,6 +65,9 @@ public class DatabaseFoodPostgre {
                     FoodCategory.valueOf(result.getString("category"))
             );
         }
+        if(food == null){
+            throw new SQLException();
+        }
         statement.close();
         connection.close();
         return food;

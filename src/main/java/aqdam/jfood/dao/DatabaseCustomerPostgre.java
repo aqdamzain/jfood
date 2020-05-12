@@ -60,6 +60,9 @@ public class DatabaseCustomerPostgre {
                     result.getTimestamp("join_date")
             );
         }
+        if( customer == null){
+            throw new SQLException();
+        }
         statement.close();
         connection.close();
         return customer;
@@ -80,6 +83,9 @@ public class DatabaseCustomerPostgre {
                     result.getString("password"),
                     result.getTimestamp("join_date")
             );
+        }
+        if( customer == null){
+            throw new SQLException();
         }
         statement.close();
         connection.close();

@@ -79,6 +79,9 @@ public class DatabasePromoPostgre {
                     result.getInt("min_price"),
                     result.getBoolean("active"));
         }
+        if(promo == null){
+            throw new SQLException();
+        }
         return promo;
     }
 
