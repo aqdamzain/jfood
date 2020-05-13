@@ -1,10 +1,25 @@
 package aqdam.jfood;
 
 public class Promo {
+    /**
+     * store id of the promo
+     */
     private int id;
+    /**
+     * store the promo code
+     */
     private String code;
+    /**
+     * store the amount of discount in promo
+     */
     private int discount;
+    /**
+     * store the minimum price to use promo
+     */
     private int minPrice;
+    /**
+     * store the validity of the promo
+     */
     private boolean active;
 
     public Promo(int id, String code, int discount, int minPrice, boolean active) {

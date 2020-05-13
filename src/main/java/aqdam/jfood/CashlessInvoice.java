@@ -3,9 +3,20 @@ package aqdam.jfood;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+/**
+ * inherit from class Invoice
+ * add attribute payment type that is cashless type and
+ * add the attribute promo
+ */
 public class CashlessInvoice extends Invoice {
 
+    /**
+     * store cashless value of enum class PaymentType
+     */
     private final static PaymentType PAYMENT_TYPE = PaymentType.Cashless;
+    /**
+     * store the promo used by the invoice
+     */
     private Promo promo;
 
     public CashlessInvoice(int id, ArrayList<Food> foods, Customer customer) {
@@ -28,7 +39,10 @@ public class CashlessInvoice extends Invoice {
     public void setPromo(Promo promo) {
         this.promo = promo;
     }
-
+    /**
+     * Calculate the total price from
+     * all food in the invoice
+     */
     public void setTotalPrice() {
         int foodsPrice = 0;
         for (Food food : super.getFoods()) {

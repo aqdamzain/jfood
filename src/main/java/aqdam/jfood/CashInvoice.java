@@ -3,8 +3,20 @@ package aqdam.jfood;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
+/**
+ * inherit from class Invoice
+ * add attribute payment type that is cash type and
+ * add the attribute deliveryFee
+ */
 public class CashInvoice extends Invoice {
+
+    /**
+     * store cash value of enum class PaymentType
+     */
     private final static PaymentType PAYMENT_TYPE = PaymentType.Cash;
+    /**
+     * store delivery fee for cash invoice
+     */
     private int deliveryFee;
 
     public CashInvoice(int id, ArrayList<Food> foods, Customer customer) {
@@ -29,6 +41,10 @@ public class CashInvoice extends Invoice {
         this.deliveryFee = deliveryFee;
     }
 
+    /**
+     * Calculate the total price from
+     * all food in the invoice
+     */
     @Override
     public void setTotalPrice() {
         if (!(deliveryFee == 0)) {

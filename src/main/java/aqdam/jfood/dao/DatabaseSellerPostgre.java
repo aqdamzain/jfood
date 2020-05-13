@@ -9,8 +9,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * for query execution of table seller in database
+ */
 public class DatabaseSellerPostgre {
 
+    /**
+     * get id of seller that latest inserted to database
+     * @return id of seller
+     */
     public static int getLastSellerId() {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;
@@ -30,6 +37,11 @@ public class DatabaseSellerPostgre {
         return lastId;
     }
 
+    /**
+     * get all seller from database
+     * @return list all seller object
+     * @throws SQLException throws exception if query goes wrong
+     */
     public static ArrayList<Seller> getAllSeller() throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -51,6 +63,12 @@ public class DatabaseSellerPostgre {
         return sellers;
     }
 
+    /**
+     * get seller based on id that seller has
+     * @param id id of seller
+     * @return seller object
+     * @throws SQLException throws exception if query goes wrong
+     */
     public static Seller getSellerById(int id) throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -74,6 +92,11 @@ public class DatabaseSellerPostgre {
         return seller;
     }
 
+    /**
+     * insert seller to database
+     * @param seller is seller object
+     * @throws SQLException throws exception if query goes wrong
+     */
     public static void insertSeller(Seller seller) throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -91,6 +114,11 @@ public class DatabaseSellerPostgre {
         connection.close();
     }
 
+    /**
+     * remove seller from database
+     * @param id is id of the seller
+     * @return true if seller found in database and get removed
+     */
     public static boolean removeSeller(int id) {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;

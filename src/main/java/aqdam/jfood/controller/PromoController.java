@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+/**
+ * provide the controller for API request for promo
+ */
 @RequestMapping("/promo")
 @RestController
 public class PromoController {

@@ -7,6 +7,10 @@
  */
 package aqdam.jfood;
 
+/**
+ * FoodCategory provide
+ * category value of the food object
+ */
 public enum FoodCategory {
     Beverages("Beverages"), Coffee("Coffee"), Western("Western"), Snacks("Snacks"),
     Rice("Rice"), Noodles("Noodles"), Bakery("Bakery"), Japanese("Japanese");

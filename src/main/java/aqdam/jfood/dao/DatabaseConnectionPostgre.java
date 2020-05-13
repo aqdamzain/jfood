@@ -3,8 +3,17 @@ package aqdam.jfood.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 
+/**
+ * DatabaseConnectionPostgre is used to build the connection
+ * to the database that use postgres RDBMS
+ */
 public class DatabaseConnectionPostgre {
 
+    /**
+     * get the connection of the database that
+     * is used for executed query
+     * @return Connection
+     */
     public static Connection connection() {
         Connection c = null;
         try {

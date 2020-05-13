@@ -7,6 +7,10 @@
  */
 package aqdam.jfood;
 
+/**
+ * PaymentType provide
+ * type value of the invoice object
+ */
 public enum PaymentType {
     Cashless("Cashless"), Cash("Cash");
 

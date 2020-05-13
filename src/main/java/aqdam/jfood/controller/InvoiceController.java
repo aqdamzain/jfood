@@ -10,6 +10,10 @@ import org.springframework.web.bind.annotation.*;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
+
+/**
+ * provide the controller for API request for invoice
+ */
 @RequestMapping("/invoice")
 @RestController
 public class InvoiceController {

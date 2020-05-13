@@ -8,8 +8,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * for query execution of the table promo in database
+ */
 public class DatabasePromoPostgre {
 
+    /**
+     * get id of promo that latest inserted to database
+     * @return id of promo
+     */
     public static int getLastPromoId() {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;
@@ -29,6 +36,11 @@ public class DatabasePromoPostgre {
         return lastId;
     }
 
+    /**
+     * get all promo from row data from table promo in database
+     * @return list of promo object
+     * @throws SQLException throws exception if query goes wrong
+     */
     public static ArrayList<Promo> getAllPromo() throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -46,6 +58,12 @@ public class DatabasePromoPostgre {
         return promos;
     }
 
+    /**
+     * get promo based on id that promo has
+     * @param id is id of promo
+     * @return promo object
+     * @throws SQLException throws exception if query goes wrong
+     */
     public static Promo getPromoById(int id) throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -64,6 +82,13 @@ public class DatabasePromoPostgre {
         return promo;
     }
 
+    /**
+     * get promo based on unique code that promo has
+     * @param code unique code that promo has
+     * @return promo object
+     * @throws SQLException throws exception if query goes wrong or
+     * promo not found in database
+     */
     public static Promo getPromoByCode(String code) throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -86,6 +111,12 @@ public class DatabasePromoPostgre {
     }
 
 
+    /**
+     * insert new promo data to database
+     * @param promo promo object
+     * @throws SQLException throws exception if query goes wrong or
+     * promo code already has in the database
+     */
     public static void insertPromo(Promo promo) throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -101,6 +132,11 @@ public class DatabasePromoPostgre {
         connection.close();
     }
 
+    /**
+     * used to activated the promo in database
+     * @param id
+     * @return
+     */
     public static boolean activePromo(int id) {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;
@@ -118,6 +154,11 @@ public class DatabasePromoPostgre {
         return false;
     }
 
+    /**
+     * used to deactivated the promo in database
+     * @param id
+     * @return
+     */
     public static boolean deactivatePromo(int id) {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;
@@ -135,6 +176,11 @@ public class DatabasePromoPostgre {
         return false;
     }
 
+    /**
+     * used to remove promo from database
+     * @param id
+     * @return
+     */
     public static boolean removePromo(int id) {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;

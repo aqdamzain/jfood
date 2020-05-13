@@ -7,6 +7,10 @@
  */
 package aqdam.jfood;
 
+/**
+ * InvoiceStatus provide
+ * status value of the invoice object
+ */
 public enum InvoiceStatus {
     Ongoing("Ongoing"), Finished("Finished"), Cancelled("Cancelled");
 

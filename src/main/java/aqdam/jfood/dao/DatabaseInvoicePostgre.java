@@ -8,8 +8,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * for query execution of table invoice in database
+ */
 public class DatabaseInvoicePostgre {
 
+    /**
+     * get id of invoice that latest inserted to database
+     * @return id of invoice
+     */
     public static int getLastInvoiceId() {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;
@@ -29,6 +36,11 @@ public class DatabaseInvoicePostgre {
         return lastId;
     }
 
+    /**
+     * get all invoice object from database
+     * @return list of invoice object
+     * @throws SQLException throws exception if query goes wrong
+     */
     public static ArrayList<Invoice> getAllInvoice() throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -67,6 +79,12 @@ public class DatabaseInvoicePostgre {
         return invoices;
     }
 
+    /**
+     * get invoice from database based on id of customer that has invoice
+     * @param customerId id of the customer
+     * @return list of invoice that customer has
+     * @throws SQLException trows exception if query goes wrong
+     */
     public static ArrayList<Invoice> getInvoiceByCustomer(int customerId) throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -106,6 +124,12 @@ public class DatabaseInvoicePostgre {
         return invoices;
     }
 
+    /**
+     * get invoice based on id that invoice has
+     * @param id id of invoice
+     * @return invoice object
+     * @throws SQLException throws exception if query goes wrong
+     */
     public static Invoice getInvoiceById(int id) throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -143,6 +167,11 @@ public class DatabaseInvoicePostgre {
         return invoice;
     }
 
+    /**
+     * insert new invoice data to database
+     * @param invoice invoice object
+     * @throws SQLException throw exception if query goes wrong
+     */
     public static void insertInvoice(Invoice invoice) throws SQLException {
         for(Invoice invoice1 : getInvoiceByCustomer(invoice.getCustomer().getId())){
             if(invoice1.getInvoiceStatus().equals(InvoiceStatus.Ongoing)){
@@ -194,6 +223,12 @@ public class DatabaseInvoicePostgre {
         connection.close();
     }
 
+    /**
+     * Change the status of the invoice in the database
+     * @param id id of the invoice in database
+     * @param status new status of the invoice
+     * @return
+     */
     public static boolean changeInvoiceStatus(int id, InvoiceStatus status) {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;
@@ -213,6 +248,11 @@ public class DatabaseInvoicePostgre {
         return false;
     }
 
+    /**
+     * remove invoice from database
+     * @param id id of invoice
+     * @return
+     */
     public static boolean removeInvoice(int id) {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;
@@ -231,6 +271,11 @@ public class DatabaseInvoicePostgre {
         return false;
     }
 
+    /**
+     * get the list of food that invoice has from database
+     * @param invoiceId id of the invoice
+     * @return list of food object
+     */
     public static ArrayList<Food> getFoodOrder(int invoiceId) {
         Connection connection = DatabaseConnectionPostgre.connection();
         ArrayList<Food> foods = new ArrayList<>();
@@ -257,6 +302,11 @@ public class DatabaseInvoicePostgre {
         return null;
     }
 
+    /**
+     * delete the list of food that invoice has from database
+     * @param invoiceId id of the invoice
+     * @return true if invoice found
+     */
     public static boolean deleteFoodOrder(int invoiceId) {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;

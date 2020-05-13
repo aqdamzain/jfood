@@ -9,8 +9,15 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+/**
+ * for query execution of table food in the database
+ */
 public class DatabaseFoodPostgre {
 
+    /**
+     * get the latest id of food that inserted to database
+     * @return id of the food
+     */
     public static int getLastFoodId() {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;
@@ -30,6 +37,11 @@ public class DatabaseFoodPostgre {
         return lastId;
     }
 
+    /**
+     * get all row data from table food in database
+     * @return list of the food object based on data in database
+     * @throws SQLException throws exception if query goes wrong
+     */
     public static ArrayList<Food> getAllFood() throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -49,6 +61,13 @@ public class DatabaseFoodPostgre {
         return foods;
     }
 
+    /**
+     * get food data from database based on id that food has
+     * @param id is the identifier of the food
+     * @return food object
+     * @throws SQLException throws exception if query goes wrong or
+     * food not found in the database
+     */
     public static Food getFoodById(int id) throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -73,6 +92,12 @@ public class DatabaseFoodPostgre {
         return food;
     }
 
+    /**
+     * get food data from database based on id of seller that food has
+     * @param seller_id id of the seller that provide food
+     * @return all food that belongs to seller
+     * @throws SQLException throws exception if query goes wrong
+     */
     public static ArrayList<Food> getFoodBySeller(int seller_id) throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -93,6 +118,12 @@ public class DatabaseFoodPostgre {
         return foods;
     }
 
+    /**
+     * get food data from database based on the category of the food
+     * @param category is category or type of the food
+     * @return all food that has certain category
+     * @throws SQLException throws exception if query goes wrong
+     */
     public static ArrayList<Food> getFoodByCategory(FoodCategory category) throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -113,6 +144,12 @@ public class DatabaseFoodPostgre {
         return foods;
     }
 
+    /**
+     * insert food object to database to
+     * create new data in table food
+     * @param food is food object of new food
+     * @throws SQLException throws exception if query goes wrong
+     */
     public static void insertFood(Food food) throws SQLException {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = connection.createStatement();
@@ -128,6 +165,11 @@ public class DatabaseFoodPostgre {
         connection.close();
     }
 
+    /**
+     * remove food data from database based on id that food has
+     * @param id is id of the food in database
+     * @return true is food found in database and the data get removed
+     */
     public static boolean removeFood(int id) {
         Connection connection = DatabaseConnectionPostgre.connection();
         Statement statement = null;
