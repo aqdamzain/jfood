@@ -75,12 +75,16 @@ public class DatabaseCustomerPostgre {
                 "limit 1";
         ResultSet result = statement.executeQuery(query);
         if (result.next()) {
-            customer = new Customer(result.getShort("id"),
-                    result.getString("name"),
-                    result.getString("email"),
-                    result.getString("password"),
-                    result.getTimestamp("join_date")
-            );
+            try {
+                customer = new Customer(result.getShort("id"),
+                        result.getString("name"),
+                        result.getString("email"),
+                        result.getString("password"),
+                        result.getTimestamp("join_date")
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         if( customer == null){
             throw new SQLException();
@@ -105,12 +109,16 @@ public class DatabaseCustomerPostgre {
                 "limit 1";
         ResultSet result = statement.executeQuery(query);
         if (result.next()) {
-            customer = new Customer(result.getShort("id"),
-                    result.getString("name"),
-                    result.getString("email"),
-                    result.getString("password"),
-                    result.getTimestamp("join_date")
-            );
+            try {
+                customer = new Customer(result.getShort("id"),
+                        result.getString("name"),
+                        result.getString("email"),
+                        result.getString("password"),
+                        result.getTimestamp("join_date")
+                );
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
         if( customer == null){
             throw new SQLException();

@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"aqdam.jfood"},{"l":"aqdam.jfood.controller"},{"l":"aqdam.jfood.dao"}]

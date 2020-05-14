@@ -7,6 +7,7 @@
  */
 package aqdam.jfood;
 
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -43,7 +44,7 @@ public class Customer {
      * @param password is the password of the customer to login app
      * @param joinDate is the date when customer registered on app
      */
-    public Customer(int id, String name, String email, String password, Timestamp joinDate) {
+    public Customer(int id, String name, String email, String password, Timestamp joinDate) throws SQLException {
         this.id = id;
         this.name = name;
         this.joinDate = joinDate;
@@ -53,7 +54,7 @@ public class Customer {
 
     }
 
-    public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth) {
+    public Customer(int id, String name, String email, String password, int year, int month, int dayOfMonth) throws SQLException {
         this.id = id;
         this.name = name;
         Calendar joinDate = new GregorianCalendar(year, month - 1, dayOfMonth);
@@ -62,7 +63,7 @@ public class Customer {
         setPassword(password);
     }
 
-    public Customer(int id, String name, String email, String password) {
+    public Customer(int id, String name, String email, String password) throws SQLException {
         this.setEmail(email);
         this.setPassword(password);
         this.joinDate = DateAndCalendar.ConvertToDate(Calendar.getInstance());
@@ -115,14 +116,14 @@ public class Customer {
      * This method is used to manage email of customer.
      * @param email is the email of the customer to login app
      */
-    public void setEmail(String email) {
+    public void setEmail(String email) throws SQLException {
         //String local = "([\\w\\&\\*_~]+\\.{0,1})+";
         //String domain = "[\\w][\\w\\-]*(\\.[\\w\\-]+)+";
         String regex = "^([\\w\\&\\*_~]+\\.{0,1})+@[\\w][\\w\\-]*(\\.[\\w\\-]+)+$";
         if (Pattern.matches(regex, email)) {
             this.email = email;
         } else {
-            this.email = " ";
+            throw new SQLException();
         }
     }
 
@@ -138,12 +139,12 @@ public class Customer {
      * This method is used to manage password of customer.
      * @param password is the password of the customer to login app 
      */
-    public void setPassword(String password) {
+    public void setPassword(String password) throws SQLException {
         String regex = "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,}$";
         if (Pattern.matches(regex, password)) {
             this.password = password;
         } else {
-            this.password = " ";
+            throw new SQLException();
         }
     }
 

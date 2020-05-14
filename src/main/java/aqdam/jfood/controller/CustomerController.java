@@ -41,8 +41,8 @@ public class CustomerController {
     public Customer registerCustomer(@RequestParam(value = "name") String name,
                                      @RequestParam(value = "email") String email,
                                      @RequestParam(value = "password") String password) {
-        Customer customer = new Customer(DatabaseCustomerPostgre.getLastCustomerId() + 1, name, email, password);
         try {
+            Customer customer = new Customer(DatabaseCustomerPostgre.getLastCustomerId() + 1, name, email, password);
             DatabaseCustomerPostgre.insertCustomer(customer);
             return customer;
         } catch (SQLException throwables) {
